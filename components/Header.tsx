@@ -23,6 +23,12 @@ const Header = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value);
   };
+
+  const handleClick = () => {
+    dispatch(boardActions.setNewTaskType("todo"));
+    dispatch(boardActions.toggleModal());
+  };
+
   return (
     <header>
       <div className="flex flex-col md:flex-row items-center p-3 bg-gray-500/10">
@@ -65,7 +71,10 @@ const Header = () => {
           style={{ width: "600px" }}
         >
           <div className="bg-gray-600/10 p-1 rounded-md cursor-pointer">
-            <AddOutlinedIcon className="text-white w-full h-8" />
+            <AddOutlinedIcon
+              onClick={handleClick}
+              className="text-white w-full h-8"
+            />
           </div>
           <div className="bg-gray-600/10 p-1 rounded-md cursor-pointer">
             <InfoOutlinedIcon className="text-white w-full h-8" />
