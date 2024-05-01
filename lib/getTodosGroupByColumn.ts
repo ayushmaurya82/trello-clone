@@ -1,9 +1,14 @@
 import { Board, Column, Todo, TypedColumn } from "@/components/types";
+import { documentType } from "@/reducer/boardReducer";
 
-export const getTodosGroupByColumn = () => {
+export const getTodosGroupByColumn = (documents: documentType[]) => {
+  if (!localStorage.getItem("documents"))
+    localStorage.setItem("documents", JSON.stringify(documents));
   const todos = JSON.parse(localStorage.getItem("documents") || "");
 
-  const columns = todos.reduce((acc: any, todo: any) => {
+  let document = todos === "" ? documents : todos;
+
+  const columns = document.reduce((acc: any, todo: any) => {
     const todoStatus = todo.status as TypedColumn;
     if (!acc.get(todoStatus)) {
       acc.set(todoStatus, {
@@ -16,7 +21,7 @@ export const getTodosGroupByColumn = () => {
       $id: todo.$id,
       title: todo.title,
       status: todoStatus,
-      description: todo.description
+      description: todo.description,
     };
 
     if (todo.image) {
@@ -44,9 +49,28 @@ export const getTodosGroupByColumn = () => {
     ) as [TypedColumn, Column][]
   );
 
-  const board: Board = {
+  let board: Board = {
     columns: sortedColumns,
   };
+
+  if (!localStorage.getItem("mapData")) {
+    const objectData = Object.fromEntries(board.columns);
+    const stringData = JSON.stringify(objectData);
+    localStorage.setItem("mapData", stringData);
+  } else {
+    const rawData = localStorage.getItem("mapData") || "[]";
+    const parsedData: [string, Column][] = JSON.parse(rawData);
+    const columnsMap = new Map<TypedColumn, Column>();
+
+    for (const key in parsedData) {
+      if (Object.hasOwnProperty.call(parsedData, key)) {
+        const typedColumn = key as unknown as TypedColumn;
+        const value = parsedData[key] as unknown as Column;
+        columnsMap.set(typedColumn, value);
+      }
+    }
+    board = { columns: columnsMap };
+  }
 
   return board;
 };

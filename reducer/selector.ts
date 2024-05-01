@@ -8,30 +8,20 @@ const getBoardsConfig = (state: any) => {
 
 export const selectBordsData = createSelector(
   getBoardsConfig,
-  (data): Board =>
-    !localStorage.getItem("mapData")
-      ? data.board
-      : {
-          columns: new Map(
-            Object.entries(JSON.parse(localStorage.getItem("mapData") || "[]"))
-          ),
-        }
+  (data): Board => data.board
 );
 
-// export const selectBordsData = () =>
-//   createSelector(
-//     getBoardsConfig,
-//     (data): Board =>
-//       typeof localStorage !== "undefined" && localStorage.getItem("mapData")
-//         ? {
-//             columns: new Map(
-//               Object.entries(
-//                 JSON.parse(localStorage.getItem("mapData") || "[]")
-//               )
-//             ),
-//           }
-//         : data.board
-//   );
+// export const selectBordsData = createSelector(
+//   getBoardsConfig,
+//   (data): Board =>
+//     !localStorage.getItem("mapData")
+//       ? data.board
+//       : {
+//           columns: new Map(
+//             Object.entries(JSON.parse(localStorage.getItem("mapData") || "[]"))
+//           ),
+//         }
+// );
 
 export const selectSearchString = createSelector(
   getBoardsConfig,

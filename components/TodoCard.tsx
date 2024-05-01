@@ -84,11 +84,11 @@ const TodoCard: React.FC<TodoProps> = ({
       {...draggableProps}
       {...dragHandleProps}
       ref={innerRef}
-      style={{ overflowWrap: "break-word" }}
     >
       <div
         className="flex flex-col justify-center items-start"
         onClick={handleEdit}
+        style={{ overflowWrap: "break-word" }}
       >
         <div className="font-medium text-gray-900 text-md font-medium p-5">
           <p>{todo?.title}</p>

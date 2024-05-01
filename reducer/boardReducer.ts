@@ -1,6 +1,6 @@
 import { Board, Column, Todo, TypedColumn } from "@/components/types";
 import { getTodosGroupByColumn } from "@/lib/getTodosGroupByColumn";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import { nanoid } from "@reduxjs/toolkit";
 
 interface EditTask {
@@ -16,7 +16,16 @@ interface EditTask {
   };
 }
 
+export interface documentType {
+  $id: string;
+  image?: string | null;
+  status: TypedColumn;
+  title: string;
+  description: string;
+}
+
 interface intialType {
+  documents: documentType[];
   board: Board;
   searchString: string;
   isModalOpen: boolean;
@@ -27,6 +36,61 @@ interface intialType {
 }
 
 const initialState: intialType = {
+  documents: [
+    {
+      $id: "shdg762vs26t3",
+      image: null,
+      status: "todo",
+      title: "Implement dark mode feature",
+      description:
+        "Design UI elements for dark mode compatibility. Write CSS styles for dark theme support. Test and adjust contrast ratios for readability",
+    },
+    {
+      $id: "35687gyh78",
+      image: null,
+      status: "todo",
+      title: "Enhance user profile settings",
+      description:
+        "Redesign profile page layout for improved usability. Add new settings options for customization. Validate input fields and provide error feedback.",
+    },
+    {
+      $id: "shdg762vs26t4",
+      image: null,
+      status: "inprogress",
+      title: "Optimize page load performance",
+      description:
+        "Analyze current performance metrics using Lighthouse. Minify and compress CSS and JavaScript files. Implement lazy loading for images and resources.",
+    },
+    {
+      $id: "shdg762vs26t5",
+      image: null,
+      status: "inprogress",
+      title: "Develop RESTful API endpoints",
+      description:
+        "Design API routes for user authentication and authorization. Implement token-based authentication using JWT. Write middleware for request validation and error handling.",
+    },
+    {
+      $id: "hgt7934re87yu345",
+      status: "inprogress",
+      title: "Revamp user dashboard interface",
+      description:
+        "Redesign the user dashboard interface to improve user experience and accessibility. Implement intuitive navigation and organize information for better readability. Incorporate interactive elements for enhanced user engagement.",
+    },
+    {
+      $id: "98bhukg57678bv",
+      status: "done",
+      title: "Implement local storage in UI",
+      description:
+        "Implement local storage in the user interface to ensure that user data is securely stored and remains accessible even after the page is refreshed. This feature will enhance user experience by preventing data loss and providing a seamless browsing experience.",
+    },
+    {
+      $id: "8978y867f5g78",
+      status: "done",
+      title: "Design landing page layout",
+      description:
+        "Create wireframes for desktop and mobile views. Incorporate user-friendly navigation. Ensure responsive design for various screen sizes",
+    },
+  ],
   board: {
     columns: new Map<TypedColumn, Column>(),
   },
@@ -43,7 +107,7 @@ const { actions, reducer } = createSlice({
   initialState,
   reducers: {
     addData: (draftState) => {
-      const todoData = getTodosGroupByColumn();
+      const todoData = getTodosGroupByColumn(current(draftState.documents));
 
       draftState.board = todoData;
     },
@@ -64,7 +128,7 @@ const { actions, reducer } = createSlice({
       });
       localStorage.setItem("documents", JSON.stringify(newData));
 
-      const todoData = getTodosGroupByColumn();
+      const todoData = getTodosGroupByColumn(current(draftState.documents));
 
       draftState.board = todoData;
     },
