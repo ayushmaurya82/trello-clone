@@ -25,7 +25,7 @@ const Column: React.FC<ColumnProps> = ({ id, todos, index }) => {
   const searchString = useSelector(selectSearchString);
 
   const handleClick = () => {
-    dispatch(boardActions.setNewTaskType(id))
+    dispatch(boardActions.setNewTaskType(id));
     dispatch(boardActions.toggleModal());
   };
   return (
@@ -41,7 +41,7 @@ const Column: React.FC<ColumnProps> = ({ id, todos, index }) => {
               <div
                 {...provided1.droppableProps}
                 ref={provided1.innerRef}
-                className={`p-2 rounded-2xl shadow-sm ${
+                className={`p-2 rounded-md shadow-sm ${
                   snapshot.isDraggingOver ? "bg-green-200" : "bg-white/50"
                 }`}
               >
@@ -58,7 +58,10 @@ const Column: React.FC<ColumnProps> = ({ id, todos, index }) => {
                   </span>
                 </h2>
 
-                <div className="space-y-2">
+                <div
+                  className="space-y-2  custom-scrollbar"
+                  style={{ maxHeight: "350px", overflowY: "auto" }}
+                >
                   {todos.map((todo, index) => {
                     if (
                       searchString &&
