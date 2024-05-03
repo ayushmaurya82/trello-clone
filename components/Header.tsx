@@ -34,7 +34,7 @@ const Header = () => {
       <div className="flex flex-col md:flex-row items-center p-3 bg-gray-500/10">
         <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-pink-400 to-[#0055D1] rounded-md filter blur-3xl opacity-50 -z-50"></div>
 
-        <div className="flex" style={{ width: "600px" }}>
+        <div className="flex  md:w-full justify-center" style={{ width: "600px" }}>
           <div className="bg-gray-600/10 p-1 rounded-md cursor-pointer mr-2">
             <AppsIcon className="text-white w-full h-8" />
           </div>
@@ -54,7 +54,7 @@ const Header = () => {
             </button>
           </form>
         </div>
-        <div className="flex items-center justify-center w-40">
+        <div className="flex items-center justify-center w-40 md:items-center">
           <Image
             src="https://links.papareact.com/c2cdd5"
             alt="Trillo Logo"
@@ -62,12 +62,12 @@ const Header = () => {
             height={20}
             layout="fixed"
             priority
-            className="w-44 md:w-56 pb-10 md:pb-0 object-contain mx-auto flex justify-center"
+            className="w-44 md:w-56 pb-10 md:pb-0 object-contain mx-auto flex justify-center pb-1 pt-1"
           />
         </div>
 
         <div
-          className="flex items-center space-x-2 justify-end w-full"
+          className="flex items-center space-x-2 justify-end w-full md:w-full justify-center"
           style={{ width: "600px" }}
         >
           <div className="bg-gray-600/10 p-1 rounded-md cursor-pointer">

@@ -60,7 +60,11 @@ const Column: React.FC<ColumnProps> = ({ id, todos, index }) => {
 
                 <div
                   className="space-y-2  custom-scrollbar"
-                  style={{ maxHeight: "350px", overflowY: "auto" }}
+                  style={{
+                    height: "auto",
+                    maxHeight: "350px",
+                    overflowY: "auto",
+                  }}
                 >
                   {todos.map((todo, index) => {
                     if (

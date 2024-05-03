@@ -5,9 +5,12 @@ import StarBorderPurple500OutlinedIcon from "@mui/icons-material/StarBorderPurpl
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-grow-1" style={{ height: "88.97vh" }}>
+    <div
+      className="flex flex-grow-1 overflow-auto"
+      style={{ height: "auto" }}
+    >
       <div
-        className="flex flex-col items-center space-x-3"
+        className="flex flex-col items-center space-x-3 hidden md:block"
         style={{
           background: "linear-gradient(to bottom, #de5c9d, #3377da)",
           minWidth: "60px",
@@ -22,8 +25,8 @@ const Dashboard = () => {
           <KeyboardDoubleArrowRightOutlinedIcon className="text-white cursor-pointer" />
         </div>
       </div>
-      <div className="flex flex-col justify-center">
-        <div className="flex ml-5 mt-0 text-white font-bold text-xl space-x-3">
+      <div className="flex sm:block md:block lg:flex-col justify-center">
+        <div className="flex ml-5 md:pt-5 text-white font-bold text-xl space-x-3 invisible md:visible ">
           <div>Project Team Sprint</div>
           <div className="bg-gray-600/10 p-1 rounded-md cursor-pointer w-10 h-10 flex items-center justify-center">
             <StarBorderPurple500OutlinedIcon
