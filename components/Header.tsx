@@ -31,17 +31,17 @@ const Header = () => {
 
   return (
     <header>
-      <div className="flex flex-col md:flex-row items-center p-3 bg-gray-500/10">
+      <div className="flex flex-col md:flex-row items-center p-3 bg-gray-500/10 grid grid-cols-1 md:grid-cols-3 ">
         <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-pink-400 to-[#0055D1] rounded-md filter blur-3xl opacity-50 -z-50"></div>
 
-        <div className="flex  md:w-full justify-center lg:justify-start" style={{ width: "600px" }}>
+        <div className="flex justify-center lg:justify-start">
           <div className="bg-gray-600/10 p-1 rounded-md cursor-pointer mr-2">
             <AppsIcon className="text-white w-full h-8" />
           </div>
           <div className="bg-gray-600/10 p-1 rounded-md cursor-pointer mr-2">
             <HomeOutlinedIcon className="text-white w-full h-8" />
           </div>
-          <form className="flex items-center space-x-5 bg-white rounded-md p-2 shadow-md flex-1 md:flex-initial">
+          <form className="flex items-center bg-white rounded-md p-2 shadow-md md:flex-initial">
             <input
               type="text"
               placeholder="Search"
@@ -54,7 +54,8 @@ const Header = () => {
             </button>
           </form>
         </div>
-        <div className="flex items-center justify-center w-40 md:items-center">
+
+        <div className="flex items-center justify-center">
           <Image
             src="https://links.papareact.com/c2cdd5"
             alt="Trillo Logo"
@@ -66,10 +67,7 @@ const Header = () => {
           />
         </div>
 
-        <div
-          className="flex items-center space-x-2 justify-end w-full md:w-full justify-center lg:justify-end"
-          style={{ width: "600px" }}
-        >
+        <div className="flex items-center justify-center space-x-2 lg:justify-end">
           <div className="bg-gray-600/10 p-1 rounded-md cursor-pointer">
             <AddOutlinedIcon
               onClick={handleClick}
